@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CartelDeNachosImpl implements CartelDeNachos {
-    public class Graph {
+     class Graph {
         private Map<Integer,List<Profesor>> adjacencyList;
 
         public Graph() {
@@ -48,6 +48,9 @@ public class CartelDeNachosImpl implements CartelDeNachos {
             }
             if(ids.contains(prof.getId())){
                 return false;
+            }
+            if(bfsAux(prof,level-1,pred,ids)){
+                return true;
             }
             ids.add(prof.getId());
             for (Profesor p : adjacencyList.get(prof.getId())){

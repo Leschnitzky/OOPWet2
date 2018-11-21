@@ -25,6 +25,9 @@ public class ProfesorImpl implements Profesor,Cloneable {
 
     }
 
+
+
+
     @Override
     public Object clone(){
         ProfesorImpl to_return = new ProfesorImpl(this.mID,this.mName);
@@ -66,7 +69,7 @@ public class ProfesorImpl implements Profesor,Cloneable {
         if (mFriends.contains(p)){
             throw new ConnectionAlreadyExistsException();
         }
-        mFriends.add((ProfesorImpl)p);
+        mFriends.add(p);
         return this;
     }
 
@@ -159,7 +162,11 @@ public class ProfesorImpl implements Profesor,Cloneable {
 
     @Override
     public int hashCode(){
-        return mID;
+        int result = 17;
+        result = result * 31 + this.mID;
+//        result = 31*result + mName.hashCode();
+
+        return result;
     }
     
 

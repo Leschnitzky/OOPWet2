@@ -5,6 +5,7 @@ import OOP.Solution.CasaDeBurritoImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -103,6 +104,17 @@ public class CasaDeBurritoTests {
     public void testCompareTo(){
         assert (cdb1.compareTo(cdb2) < 0);
         assert (cdb2.compareTo(cdb1) > 0);
+    }
+
+    @Test
+    public void testHashDifference(){
+        assertEquals(new CasaDeBurritoImpl(1,"Taco Place",2, Stream.of("A","B","C").collect(Collectors.toSet())).hashCode(),
+                new CasaDeBurritoImpl(1,"Taco Place",2, Stream.of("A","B","C").collect(Collectors.toSet())).hashCode()
+                );
+        assertNotSame(new CasaDeBurritoImpl(1,"Taco Place",2, Stream.of("A","B","C").collect(Collectors.toSet())).hashCode(),
+                new CasaDeBurritoImpl(2,"Taco Place",2, Stream.of("A","B","C").collect(Collectors.toSet())).hashCode());
+        assertEquals(new CasaDeBurritoImpl(1,"Taco Place2",5, Stream.of("A1","B","C").collect(Collectors.toSet())).hashCode(),
+                new CasaDeBurritoImpl(1,"Taco Place",2, Stream.of("A","B","C").collect(Collectors.toSet())).hashCode());
     }
 
 

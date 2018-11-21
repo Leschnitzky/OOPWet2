@@ -113,4 +113,15 @@ public class CasaDeBurritoImpl implements CasaDeBurrito,Cloneable {
                 "Distance: "+this.mDistance+".\n" +
                 "Menu: " + menuString + ".";
     }
+
+    @Override
+    public int hashCode(){
+        int result = 19;
+        result = result*23 + mId;
+//        result = result*23 + mDistance;
+//        result = result*23 + mName.hashCode();
+//        result = result*23 + mMenu.hashCode();
+
+        return result;
+    }
 }

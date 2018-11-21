@@ -4,6 +4,7 @@ import OOP.Provided.CasaDeBurrito;
 import OOP.Provided.Profesor;
 import OOP.Provided.Profesor.*;
 import OOP.Solution.ProfesorImpl;
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -192,5 +193,13 @@ public class ProfesorTests {
                         "Id: 1.\n" +
                         "Favorites: ."
                 );
+    }
+
+    @Test
+    public void testHashCodeProfessors(){
+        assertEquals(new ProfesorImpl(1,"Yossi").hashCode(), new ProfesorImpl(1,"Yossi").hashCode());
+        assertNotSame(new ProfesorImpl(1,"Ehud").hashCode(), new ProfesorImpl(2,"Ehud").hashCode());
+        assertEquals(new ProfesorImpl(1,"Barak").hashCode(), new ProfesorImpl(1,"Ehud").hashCode());
+
     }
 }
