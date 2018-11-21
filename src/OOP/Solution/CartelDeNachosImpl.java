@@ -51,6 +51,8 @@ public class CartelDeNachosImpl implements CartelDeNachos {
             }
             if(bfsAux(prof,level-1,pred,ids)){
                 return true;
+            } else {
+                ids = new ArrayList<>();
             }
             ids.add(prof.getId());
             for (Profesor p : adjacencyList.get(prof.getId())){
@@ -146,6 +148,8 @@ public class CartelDeNachosImpl implements CartelDeNachos {
         if(mFriendshipGraph.containsEdge(p1,p2)){
             throw new Profesor.ConnectionAlreadyExistsException();
         }
+        p1.addFriend(p2);
+        p2.addFriend(p1);
         mFriendshipGraph.addEdge(p1,p2);
         return this;
     }

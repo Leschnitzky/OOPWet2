@@ -137,9 +137,12 @@ public class ProfesorImpl implements Profesor,Cloneable {
     @Override
     public boolean equals(Object b){
         if( b == null) return false;
-        if(!(b instanceof ProfesorImpl)) return false;
-        ProfesorImpl cdb = (ProfesorImpl) b;
-        if(cdb.getId() == this.mID){
+        if(!(b instanceof Profesor)) return false;
+        if (b.getClass() != this.getClass())
+            return false;
+
+        ProfesorImpl profesor = (ProfesorImpl) b;
+        if(profesor.getId() == this.mID){
             return true;
         } else {
             return false;
@@ -149,12 +152,7 @@ public class ProfesorImpl implements Profesor,Cloneable {
     @Override
     public String toString(){
         String casaString = "";
-        for(CasaDeBurrito cdb: mFavoriteRestaurants){
-            casaString += cdb.getName() + ", ";
-        }
-        if (casaString.length() > 0) {
-            casaString = casaString.substring(0,-2);
-        }
+        casaString = mFavoriteRestaurants.stream().map((x)-> x.getName()).sorted().collect(Collectors.joining(", "));
         return "Profesor: "+this.mName+".\n" +
                 "Id: " +this.mID+".\n" +
                 "Favorites: " + casaString + ".";

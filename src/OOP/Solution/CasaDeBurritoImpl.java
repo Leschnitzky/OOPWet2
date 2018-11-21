@@ -95,7 +95,9 @@ public class CasaDeBurritoImpl implements CasaDeBurrito,Cloneable {
     @Override
     public boolean equals(Object b){
         if( b == null) return false;
-        if(!(b instanceof CasaDeBurritoImpl)) return false;
+        if(!(b instanceof CasaDeBurrito)) return false;
+        if (b.getClass() != this.getClass())
+            return false;
         CasaDeBurritoImpl cdb = (CasaDeBurritoImpl) b;
         if(cdb.getId() == this.mId){
             return true;
@@ -106,8 +108,7 @@ public class CasaDeBurritoImpl implements CasaDeBurrito,Cloneable {
 
     @Override
     public String toString(){
-        String menuString = Stream.of(mMenu).map(x -> x + ", ").collect(Collectors.joining());
-        menuString = menuString.substring(1,menuString.length() - 3);
+        String menuString = mMenu.stream().sorted().collect(Collectors.joining(", "));
         return "CasaDeBurrito: "+this.mName+".\n" +
                 "Id: " +this.mId+".\n" +
                 "Distance: "+this.mDistance+".\n" +
